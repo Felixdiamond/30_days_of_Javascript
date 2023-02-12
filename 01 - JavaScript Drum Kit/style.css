@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
+html {
+  font-size: 0.7rem;
+  background: url('./background.jpg') bottom center;
+  background-size: cover;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Zeyada', cursive;
+}
+
+.keys {
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.key {
+  border-radius: .5rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem .5rem;
+  transition: all .07s ease;
+  width: 10rem;
+  text-align: center;
+  background-clip: text;
+  background: #2A5470;
+  background: linear-gradient(to right, #2A5470 0%, #923CB5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bolder;
+}
+
+.playing {
+  transform: scale(1.1);
+  background: rgba(155, 124, 182, 0.3);
+  box-shadow: 0 0 1rem #9B7CB6;
+}
+
+kbd {
+  display: block;
+  font-size: 4rem;
+}
+
+.sound {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  background-clip: text;
+  background: #2A5470;
+  background: linear-gradient(to right, #2A5470 0%, #923CB5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bolder;
+}
+
+
+.key {
+  position: relative;
+}
+
+.key:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 4px;
+  background: linear-gradient(120deg, #9B7CB6, #0575E6, #00F260);
+  background-size: 300% 300%;
+  clip-path: polygon(0% 100%, 3px 100%, 3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) calc(100% - 3px), 3px calc(100% - 3px), 3px 100%, 100% 100%, 100% 0%, 0% 0%);
+}
