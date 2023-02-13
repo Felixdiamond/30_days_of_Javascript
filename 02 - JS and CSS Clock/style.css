@@ -1,0 +1,135 @@
+html {
+    background: linear-gradient(128deg, #380036, #0cbaba, #a5c7b7, #5d4257, #28313b, #485461, #2a5470, #4c4177, #5e5c5c, #9dc5c3, #8cacac, #af8c9d, #5d4954, #ffa69e, #7c98b3, #637081, #2c3e50, #000000);
+    background-size: 4000% 4000%;
+
+    -webkit-animation: hehe 30s ease-in-out infinite;
+    -moz-animation: hehe 30s ease-in-out infinite;
+    animation: hehe 30s ease-in-out infinite;
+    font-family: 'helvetica neue';
+    text-align: center;
+    font-size: 10px;
+}
+
+@-webkit-keyframes hehe {
+    0% {
+        background-position: 4% 0%
+    }
+
+    50% {
+        background-position: 97% 100%
+    }
+
+    100% {
+        background-position: 4% 0%
+    }
+}
+
+@-moz-keyframes hehe {
+    0% {
+        background-position: 4% 0%
+    }
+
+    50% {
+        background-position: 97% 100%
+    }
+
+    100% {
+        background-position: 4% 0%
+    }
+}
+
+@keyframes hehe {
+    0% {
+        background-position: 4% 0%
+    }
+
+    50% {
+        background-position: 97% 100%
+    }
+
+    100% {
+        background-position: 4% 0%
+    }
+}
+
+body {
+    margin: 0;
+    font-size: 2rem;
+    display: flex;
+    flex: 1;
+    min-height: 100vh;
+    align-items: center;
+}
+
+.clock {
+    --angle: 45deg;
+    width: 30rem;
+    height: 30rem;
+    border: 1rem solid;
+    border-image: linear-gradient(var(--angle), #12c2e9, #c471ed, #f64f59) 1;
+    margin: 50px auto;
+    position: relative;
+    padding: 2rem;
+    animation: 10s rotate linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        --angle: 360deg;
+    }
+}
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 45deg;
+    inherits: false;
+}
+
+
+.clock-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-3px);
+    /* account for the height of the clock hands */
+}
+
+.hand {
+    width: 50%;
+    height: 6px;
+    background: linear-gradient(45deg, #12c2e9, #c471ed, #f64f59);
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.5s ease-in-out;
+    z-index: 1;
+}
+
+.time {
+    position: absolute;
+    top: 80%;
+    margin-left: 35%;
+    display: flex !important;
+}
+
+.hehe {
+    background: #12C2E9;
+    background: linear-gradient(to right, #12C2E9 0%, #C471ED 50%, #f64f59 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex !important;
+}
+
+.dot {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #12c2e9, #c471ed, #f64f59);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
