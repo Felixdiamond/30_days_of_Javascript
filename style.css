@@ -59,10 +59,16 @@ h3 {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    display: flex !important;
     padding-left: 10px;
-    font-size: 1.5rem;
+    font-size: 3rem;
 }
 h1 {
-    font-size: 3rem;
+    font-size: 5rem;
+    text-transform: uppercase;
+    background: #12C2E9;
+    background: linear-gradient(to right, #12C2E9 0%, #C471ED 50%, #f64f59 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-left: 10px;
 }
