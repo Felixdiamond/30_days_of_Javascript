@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Update CSS Variables with JS</title>
+    <link rel="icon" href="https://fav.farm/🔥" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body id="body">
+    <h2>Update <span class="highlight">CSS</span> Variables with <span class="highlight">JS</span></h2>
+
+    <div class="controls">
+      <label for="spacing">Spacing:</label>
+      <input
+        id="spacing"
+        type="range"
+        name="spacing"
+        min="10"
+        max="200"
+        value="10"
+        data-sizing="px"
+      />
+
+      <label for="blur">Blur:</label>
+      <input
+        id="blur"
+        type="range"
+        name="blur"
+        min="0"
+        max="25"
+        value="10"
+        data-sizing="px"
+      />
+      <label for="base">Image Border Color:</label>
+      <input id="base" type="color" name="base" value="#ffc600"/>
+    </div>
+
+    <img
+      src="https://ik.imagekit.io/choppa123/landscape.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1676720532217"
+    />
+    <script src="index.js"></script>
+  </body>
+</html>

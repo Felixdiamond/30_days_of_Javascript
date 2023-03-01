@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
+:root {
+  --base-color: teal;
+  --border-color: #ffc600;
+  --spacing: 10px;
+  --blur: 10px;
+  --change-color: rgba(147, 133, 118, 0.941);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--base-color);
+  font-family: 'Zeyada', cursive;
+  color: white;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.highlight {
+  color: var(--border-color);
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+label {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+input[type="range"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 80%;
+  height: 2px;
+  margin-bottom: 1rem;
+  background-color: #ccc;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="color"] {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 1rem;
+  outline: none;
+  border: none;
+}
+
+img {
+  width: 70%;
+  height: auto;
+  padding: var(--spacing);
+  filter: blur(var(--blur));
+  border: solid 10px var(--border-color);
+}
