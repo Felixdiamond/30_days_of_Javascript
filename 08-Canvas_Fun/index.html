@@ -2,8 +2,38 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HTML5 Canvas</title>
+    <style>
+      /* Add your custom CSS for desktop devices here */
+      @media only screen and (max-width: 600px) {
+        body {
+          display: none;
+        }
+        #mobile-message {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          background-color: #333;
+          color: #fff;
+          font-family: sans-serif;
+        }
+        #mobile-message h1 {
+          font-size: 2em;
+          margin-bottom: 0.5em;
+        }
+        #mobile-message p {
+          font-size: 1.2em;
+          text-align: center;
+          max-width: 80%;
+        }
+      }
+      #mobile-message {
+        display: none;
+      }
+    </style>
     <link rel="icon" href="https://fav.farm/🔥" />
     <link rel="stylesheet" href="style.css" />
     <script
@@ -12,6 +42,11 @@
     ></script>
   </head>
   <body>
+    <div id="mobile-message">
+      <h1>Sorry</h1>
+      <p>This website is best viewed on desktop</p>
+    </div>
+
     <!-- The container -->
     <div class="container">
       <!-- The toolbar -->
@@ -41,22 +76,26 @@
       <div class="color-div">
         <label for="colorPicker" class="gradient-switch-label">Color: </label>
         <input type="color" id="colorPicker" class="color-picker" />
-      <br />
+        <br />
       </div>
       <div class="gradient-switch-container">
-        <label for="gradientSwitch" class="gradient-switch-label">Gradient: </label>
+        <label for="gradientSwitch" class="gradient-switch-label"
+          >Gradient:
+        </label>
         <label class="switch">
-          <input type="checkbox" id="gradientSwitch" onclick="toggleColorPicker()" />
+          <input
+            type="checkbox"
+            id="gradientSwitch"
+            onclick="toggleColorPicker()"
+          />
           <span class="slider round"></span>
         </label>
       </div>
     </div>
-    
 
-    <div class="brush-menu"
-      style="display: none; position: absolute;
-      top: 10px;
-      right: 10px;"
+    <div
+      class="brush-menu"
+      style="display: none; position: absolute; top: 10px; right: 10px"
     >
       <div
         id="rangeInputContainer"
@@ -75,25 +114,37 @@
           style="width: 100%"
         />
       </div>
-      <div class='for-icons'>
-      <div class="icon-container" id="pencilButton">
-        <i class="fa fa-pencil pencill"></i>
-      </div>
-      <div class="icon-container" id="markerButton">
-        <i class="fa-solid fa-marker markerr"></i>
-      </div>
-      <div class="icon-container" id="penButton">
-        <i class="fa-solid fa-pen-nib penn"></i>
-      </div>
-      <div class="icon-container" id="brushButton">
-        <i class="fa-solid fa-paint-brush brushh"></i>
-      </div>
+      <div class="for-icons">
+        <div class="icon-container" id="pencilButton">
+          <i class="fa fa-pencil pencill"></i>
+        </div>
+        <div class="icon-container" id="markerButton">
+          <i class="fa-solid fa-marker markerr"></i>
+        </div>
+        <div class="icon-container" id="penButton">
+          <i class="fa-solid fa-pen-nib penn"></i>
+        </div>
+        <div class="icon-container" id="brushButton">
+          <i class="fa-solid fa-paint-brush brushh"></i>
+        </div>
       </div>
     </div>
 
-    <div id="notification" style="display: none; position: fixed; top: 20px; right: 20px; padding: 10px; background-color: lightblue; border-radius: 5px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);">
+    <div
+      id="notification"
+      style="
+        display: none;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px;
+        background-color: lightblue;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      "
+    >
       Eraser mode activated
-    </div>    
+    </div>
 
     <canvas id="draw" width="800" height="800"></canvas>
     <script src="index.js"></script>
