@@ -1,13 +1,31 @@
 const canvas = document.getElementById("draw");
 const ctx = canvas.getContext("2d");
 
+const palleteToggleBtn = document.querySelector(".show-palette");
+const colorPalette = document.getElementById("colorPalette");
+const gradientSwitch = document.getElementById("gradientSwitch");
+const colorPicker = document.getElementById("colorPicker");
+const brushSettingsBtn = document.querySelector(".brush-settings");
+const rangeInput = document.getElementById("rangeInput");
+const brushMenuBtn = document.querySelector(".brush-menu");
+const pencilButton = document.getElementById("pencilButton");
+const markerButton = document.getElementById("markerButton");
+const penButton = document.getElementById("penButton");
+const brushButton = document.getElementById("brushButton");
+const pencill = document.querySelector(".pencill");
+const markerr = document.querySelector(".markerr");
+const penn = document.querySelector(".penn");
+const brushh = document.querySelector(".brushh");
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
+let drawingColor = "#000000";
 
 ctx.strokeStyle = "#BADA55";
 ctx.lineJoin = "round";
 ctx.lineCap = "round";
-ctx.lineWidth = 35;
+ctx.lineWidth = 7;
 // ctx.globalCompositeOperation = 'multiply';
 
 let isDrawing = false;
@@ -17,10 +35,166 @@ let lastY = 0;
 let hue = 0;
 let direction = true;
 
+function toggleRange() {
+  if (brushMenuBtn.style.display === "none") {
+    colorPalette.style.display = "none";
+    brushMenuBtn.style.display = "flex";
+  } else {
+    brushMenuBtn.style.display = "none";
+  }
+}
+
+function togglePalette() {
+  if (colorPalette.style.display === "none") {
+    brushMenuBtn.style.display = "none";
+    colorPalette.style.display = "flex";
+  } else {
+    colorPalette.style.display = "none";
+  }
+}
+
+function getRange() {
+  return rangeInput.value;
+}
+
+rangeInput.addEventListener("change", () => {
+  currentTool = 0;
+  ctx.lineWidth = getRange();
+});
+
+function toggleColorPicker() {
+  if (gradientSwitch.checked) {
+    colorPicker.disabled = true;
+  } else {
+    colorPicker.disabled = false;
+  }
+}
+
+function getColor() {
+  return colorPicker.value;
+}
+
+function isGradientChecked() {
+  return gradientSwitch.checked;
+}
+
+brushSettingsBtn.addEventListener("click", () => {
+  toggleRange();
+});
+
+// Set up the pencil tool
+var pencil = {
+  size: 1,
+  color: "black",
+  strokeWeight: 3,
+  endPointStyle: "round",
+  lineStyle: "solid",
+};
+
+// Set up the marker tool
+var marker = {
+  size: 5,
+  color: "red",
+  opacity: 0.8,
+  blendingMode: "multiply",
+};
+
+// Set up the pen tool
+var pen = {
+  size: 3,
+  color: "blue",
+  endPointStyle: "round",
+};
+
+var brush = {
+  size: 20,
+  endPointStyle: "round",
+}
+
+// Set the current tool to the pencil tool
+var currentTool = brush;
+
+// Set up event listeners for the tool buttons
+pencilButton.addEventListener("click", function () {
+  // Switch to the pencil tool when the pencil button is clicked
+  currentTool = pencil;
+  this.classList.toggle("active");
+  pencill.classList.toggle("active");
+  markerButton.classList.remove("active");
+  penButton.classList.remove("active");
+  brushButton.classList.remove("active");
+  markerr.classList.remove("active");
+  penn.classList.remove("active");
+  brushh.classList.remove("active");
+});
+
+markerButton.addEventListener("click", function () {
+  // Switch to the marker tool when the marker button is clicked
+  this.classList.toggle("active");
+  markerr.classList.toggle("active");
+  currentTool = marker;
+  pencilButton.classList.remove("active");
+  penButton.classList.remove("active");
+  brushButton.classList.remove("active");
+  pencill.classList.remove("active");
+  penn.classList.remove("active");
+  brushh.classList.remove("active");
+});
+
+penButton.addEventListener("click", function () {
+  // Switch to the pen tool when the pen button is clicked
+  this.classList.toggle("active");
+  penn.classList.toggle("active");
+  currentTool = pen;
+  pencilButton.classList.remove("active");
+  markerButton.classList.remove("active");
+  brushButton.classList.remove("active");
+  pencill.classList.remove("active");
+  markerr.classList.remove("active");
+  brushh.classList.remove("active");
+});
+
+brushButton.addEventListener("click", function () {
+  // Switch to the pen tool when the pen button is clicked
+  this.classList.toggle("active");
+  brushh.classList.toggle("active");
+  currentTool = brush;
+  pencilButton.classList.remove("active");
+  markerButton.classList.remove("active");
+  penButton.classList.remove("active");
+  pencill.classList.remove("active");
+  markerr.classList.remove("active");
+  penn.classList.remove("active");
+});
+
 const draw = (e) => {
   if (!isDrawing) return;
-  console.log(e);
-  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+  if (currentTool == pencil) {
+    ctx.strokeStyle = isGradientChecked()
+      ? `hsl(${hue}, 100%, 50%)`
+      : currentTool.color;
+    ctx.lineWidth = currentTool.size;
+    ctx.lineCap = currentTool.endPointStyle;
+    ctx.setLineDash(currentTool.lineStyle === "dashed" ? [5, 5] : []);
+  } else if (currentTool == marker) {
+    ctx.strokeStyle = isGradientChecked()
+      ? `hsl(${hue}, 100%, 50%)`
+      : currentTool.color;
+    ctx.lineWidth = currentTool.size;
+    ctx.globalAlpha = currentTool.opacity;
+    ctx.globalCompositeOperation = currentTool.blendingMode;
+  } else if (currentTool == pen) {
+    ctx.lineWidth = currentTool.size;
+    ctx.strokeStyle = isGradientChecked()
+      ? `hsl(${hue}, 100%, 50%)`
+      : currentTool.color;
+    ctx.lineCap = currentTool.endPointStyle;
+  } else if (currentTool == brush) {
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+    ctx.lineWidth = currentTool.size;
+    ctx.strokeStyle = isGradientChecked() ? `hsl(${hue}, 100%, 50%)` : getColor();
+    ctx.lineCap = currentTool.endPointStyle;
+  }
   ctx.beginPath();
   ctx.moveTo(lastX, lastY);
   ctx.lineTo(e.offsetX, e.offsetY);
@@ -30,10 +204,15 @@ const draw = (e) => {
 };
 
 canvas.addEventListener("mousedown", (e) => {
-  isDrawing = true;
-  [lastX, lastY] = [e.offsetX, e.offsetY];
-  saveCanvasState();
+  if (isErasing) {
+    erase(e.clientX, e.clientY, getRange());
+  } else {
+    isDrawing = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+    saveCanvasState();
+  }
 });
+
 
 canvas.addEventListener("mousemove", draw);
 canvas.addEventListener("mouseup", () => (isDrawing = false));
@@ -46,6 +225,8 @@ const items = document.querySelector(".items");
 // Add a click event listener to the toolbar
 toolbar.addEventListener("click", () => {
   // Toggle the active class on the toolbar and items
+  brushMenuBtn.style.display = "none";
+  colorPalette.style.display = "none";
   toolbar.classList.toggle("active");
   items.classList.toggle("active");
 });
@@ -185,8 +366,6 @@ function redo() {
   }
 }
 
-
-
 // Add a keydown event listener to the document
 document.addEventListener("keydown", (event) => {
   // Check if the Ctrl key is pressed and the Z key is pressed
@@ -212,9 +391,63 @@ const redoEle = document.querySelector(".redo-me");
 const undoEle = document.querySelector(".undo-me");
 
 redoEle.addEventListener("click", () => {
-    redo();
+  redo();
 });
 
 undoEle.addEventListener("click", () => {
-    undo();
+  undo();
+});
+
+const clearBtn = document.querySelector(".clear-me");
+
+clearBtn.addEventListener("click", () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
+
+palleteToggleBtn.addEventListener("click", () => {
+  togglePalette();
+});
+
+
+
+function erase(x, y, size) {
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(x, y, size / 2, 0, 2 * Math.PI);
+  ctx.clip();
+  ctx.clearRect(x - size / 2, y - size / 2, size, size);
+  ctx.restore();
+}
+
+const eraser = document.querySelector(".erase-me");
+
+eraser.addEventListener("click", () => {
+  isErasing = true
+});
+
+canvas.addEventListener("mousemove", function (e) {
+  // Erase on the canvas when the mouse is moved
+  if (isErasing) {
+    erase(e.clientX, e.clientY, brush.size);
+  }
+});
+
+canvas.addEventListener("mouseup", function (e) {
+  // Stop erasing when the mouse button is released
+  isErasing = false;
+});
+
+
+const notification = document.querySelector("#notification");
+
+function showNotification() {
+  notification.style.display = "block";
+  setTimeout(() => {
+    notification.style.display = "none";
+  }, 2000);
+}
+
+eraser.addEventListener("click", () => {
+  isErasing = true;
+  showNotification();
 });
