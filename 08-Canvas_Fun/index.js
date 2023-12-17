@@ -16,9 +16,10 @@ const pencill = document.querySelector(".pencill");
 const markerr = document.querySelector(".markerr");
 const penn = document.querySelector(".penn");
 const brushh = document.querySelector(".brushh");
+var isErasing = false
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = (window.innerWidth - ((25 / 100) * window.innerWidth));
+canvas.height = (window.innerHeight - ((30 / 100) * window.innerHeight));
 
 let drawingColor = "#000000";
 

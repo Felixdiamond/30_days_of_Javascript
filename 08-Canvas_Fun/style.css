@@ -4,10 +4,10 @@ body {
 }
 
 .container {
-    position: absolute;
-    bottom: 20px;
-    left: 5%;
-  }
+  position: absolute;
+  bottom: 20px;
+  left: 5%;
+}
 
 /* Style for the toolbar */
 .toolbar {
@@ -132,8 +132,8 @@ body {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -144,16 +144,16 @@ body {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
@@ -221,7 +221,6 @@ input:checked + .slider:before {
   animation: rotate 5s linear infinite, pulse 0.2s linear;
 }
 
-
 .pencill.active {
   color: white;
 }
@@ -276,7 +275,7 @@ input:checked + .slider:before {
 }
 
 label {
-  margin-right: .7rem;
+  margin-right: 0.7rem;
 }
 
 #notification {
@@ -290,4 +289,82 @@ label {
   to {
     transform: translateX(0);
   }
+}
+
+.canva {
+  border: 2px solid black;
+  position: absolute;
+  left: 15%;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.dimensions-container {
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min-content;
+  height: min-content;
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dimensions-label {
+  padding-right: 0.7rem;
+}
+
+.dimensions-label:nth-of-type(2) {
+  padding-left: 0.7rem;
+}
+
+.dimensions-input {
+    max-width: 2rem;
+    outline: none;
+    font-weight: 600;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 5px 9px;
+    position: relative;
+}
+
+.dimensions-input:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    border-bottom-color: #0078d4;
+    transition: all 0.3s ease-in-out;
+}
+
+.dimensions-input:focus {
+    outline: none;
+}
+
+.dimensions-input:focus:after {
+    width: 100%;
+    left: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
 }

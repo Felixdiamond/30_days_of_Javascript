@@ -1,21 +1,16 @@
-const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
-let lastChecked;
+const checkboxes = Array.from(document.querySelectorAll('.inbox input[type="checkbox"]'));
+let lastCheckedIndex;
 
 function runCheck(e) {
-  let inBetween = false;
   if (e.shiftKey && this.checked) {
-    checkboxes.forEach((checkbox) => {
-      if (checkbox === this || checkbox === lastChecked) {
-        inBetween = !inBetween;
-      }
-      if (inBetween) {
-        checkbox.checked = true;
-      }
-    });
+    const currentIndex = checkboxes.indexOf(this);
+    const min = Math.min(lastCheckedIndex, currentIndex);
+    const max = Math.max(lastCheckedIndex, currentIndex);
+    checkboxes.slice(min, max + 1).forEach(checkbox => checkbox.checked = true);
   }
-  lastChecked = this;
+  lastCheckedIndex = checkboxes.indexOf(this);
 }
 
-checkboxes.forEach((checkbox) => {
+checkboxes.forEach((checkbox, index) => {
   checkbox.addEventListener("click", runCheck);
 });

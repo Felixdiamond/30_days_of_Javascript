@@ -4,36 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HTML5 Canvas</title>
-    <style>
-      /* Add your custom CSS for desktop devices here */
-      @media only screen and (max-width: 600px) {
-        body {
-          display: none;
-        }
-        #mobile-message {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-          background-color: #333;
-          color: #fff;
-          font-family: sans-serif;
-        }
-        #mobile-message h1 {
-          font-size: 2em;
-          margin-bottom: 0.5em;
-        }
-        #mobile-message p {
-          font-size: 1.2em;
-          text-align: center;
-          max-width: 80%;
-        }
-      }
-      #mobile-message {
-        display: none;
-      }
-    </style>
     <link rel="icon" href="https://fav.farm/🔥" />
     <link rel="stylesheet" href="style.css" />
     <script
@@ -42,11 +12,12 @@
     ></script>
   </head>
   <body>
-    <div id="mobile-message">
-      <h1>Sorry</h1>
-      <p>This website is best viewed on desktop</p>
+    <div class="dimensions-container">
+      <span class="dimensions-label">Width</span>
+      <input type="number" class="dimensions-input" te>
+      <span class="dimensions-label">Height</span>
+      <input type="number" class="dimensions-input">
     </div>
-
     <!-- The container -->
     <div class="container">
       <!-- The toolbar -->
@@ -145,8 +116,9 @@
     >
       Eraser mode activated
     </div>
-
-    <canvas id="draw" width="800" height="800"></canvas>
+    <div class="canva-container">
+    <canvas id="draw" width="800" height="800" class="canva"></canvas>
+  </div>
     <script src="index.js"></script>
   </body>
 </html>

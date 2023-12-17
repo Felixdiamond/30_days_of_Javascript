@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
 html {
-    background: linear-gradient(128deg, #380036, #0cbaba, #a5c7b7, #5d4257, #28313b, #485461, #2a5470, #4c4177, #5e5c5c, #9dc5c3, #8cacac, #af8c9d, #5d4954, #ffa69e, #7c98b3, #637081, #2c3e50, #000000);
+    background: linear-gradient(128deg, #380036, #5d4257, #28313b, #485461, #2a5470, #4c4177, #5e5c5c, #5d4954, #637081, #2c3e50, #000000);
     background-size: 4000% 4000%;
     font-family: 'Zeyada', cursive;
     -webkit-animation: hehe 30s ease-in-out infinite;
@@ -60,7 +60,7 @@ h3 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding-left: 10px;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 h1 {
     font-size: 5rem;
@@ -71,4 +71,21 @@ h1 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding-left: 10px;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+p {
+    background: #12C2E9;
+    background: linear-gradient(to right, #12C2E9 0%, #C471ED 50%, #f64f59 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-left: 1rem;
+    font-size: 3rem;
+    padding-top: 0;
+}
+
+li {
+    padding: 5px;
 }
